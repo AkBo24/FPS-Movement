@@ -5,12 +5,23 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController player;
-    [SerializeField] float speed = 12f;
-    private float gravity  = -9.81f;
     public Vector3 velocity;
+    public LayerMask groundMask;
+    public Transform groundCheck;
+
+    [SerializeField] float speed = 12f, groundDistance = 0.4f;
+    private float gravity  = -9.81f;
+    bool isGrounded;
+
 
     // Update is called once per frame
     void Update() {
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if(isGrounded && velocity.y < 0f)
+            velocity.y = -2f;
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
