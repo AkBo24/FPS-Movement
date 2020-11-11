@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
 
-    [SerializeField] float speed = 12f, groundDistance = 0.4f;
+    [SerializeField] float speed = 12f, groundDistance = 0.4f, jumpHeight = 3f;
     private float gravity  = -9.81f;
     bool isGrounded;
 
@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(isGrounded && velocity.y < 0f)
             velocity.y = -2f;
+
+        if(Input.GetButtonDown("Jump") && isGrounded)
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
