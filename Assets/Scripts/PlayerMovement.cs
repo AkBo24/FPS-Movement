@@ -53,8 +53,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right*x + transform.forward*z;
 
         while(Time.time < (startTime + slideDuration)) {
+            player.height = slideHeight;
             player.Move(move * slideSpeed);
             yield return null;
         }
+
+        player.height = originalHeight;
     }
 }
