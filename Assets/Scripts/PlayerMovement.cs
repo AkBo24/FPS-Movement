@@ -9,10 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
 
-    [SerializeField] float speed = 12f, groundDistance = 0.4f, jumpHeight = 3f;
+    [SerializeField] private float speed = 12f, groundDistance = 0.4f, jumpHeight = 3f;
     private float gravity  = -9.81f;
     bool isGrounded;
 
+    [SerializeField] private float slideHeight, slideDuration = 0.5f, slideSpeed = 1f;
+    private float originalHeight;
+
+    void Start() {
+        originalHeight = slideHeight = player.height;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -28,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        if(Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+            StartCoroutine("Slide");
+
         //create a movement vector relative to the player
         Vector3 move = transform.right*x + transform.forward*z;
         player.Move(move * speed * Time.deltaTime);
@@ -35,5 +44,14 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
         
+    }
+
+    IEnumerator Slide() {
+        float startTime = Time.time;
+
+        while(Time.time < (startTime + slideDuration)) {
+            player.Move(Vector3.forward * slideSpeed);
+            yield return null;
+        }
     }
 }
