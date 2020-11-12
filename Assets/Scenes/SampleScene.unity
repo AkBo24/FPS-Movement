@@ -198,8 +198,8 @@ MonoBehaviour:
   groundDistance: 0.4
   jumpHeight: 3
   slideHeight: 0
-  slideDuration: 0.1
-  slideSpeed: 10
+  slideDuration: 0.5
+  slideSpeed: 1
 --- !u!1 &290435295
 GameObject:
   m_ObjectHideFlags: 0

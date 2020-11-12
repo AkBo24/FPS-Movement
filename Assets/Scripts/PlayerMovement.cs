@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float gravity  = -9.81f;
     bool isGrounded;
 
-    [SerializeField] private float slideHeight, slideDuration = 0.5f, slideSpeed = 1f;
+    [SerializeField] private float slideHeight, slideDuration = 0.5f, slideSpeed = 10f;
     private float originalHeight;
 
     void Start() {
@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
         if(isGrounded && velocity.y < 0f)
             velocity.y = -2f;
 
@@ -47,10 +46,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     IEnumerator Slide() {
+
         float startTime = Time.time;
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        Vector3 move = transform.right*x + transform.forward*z;
 
         while(Time.time < (startTime + slideDuration)) {
-            player.Move(Vector3.forward * slideSpeed);
+            player.Move(move * slideSpeed);
             yield return null;
         }
     }
