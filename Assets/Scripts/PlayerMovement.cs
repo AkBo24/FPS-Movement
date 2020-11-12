@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float originalHeight;
 
     void Start() {
-        originalHeight = slideHeight = player.height;
+        originalHeight = player.height;
     }
 
     // Update is called once per frame
