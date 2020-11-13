@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public Transform groundCheck;
 
-    [SerializeField] private float speed = 12f, groundDistance = 0.4f, jumpHeight = 3f;
+    [SerializeField] private float speed = 12f, groundDistance = 1f, jumpHeight = 3f;
     private float gravity  = -9.81f;
     bool isGrounded;
 
-    [SerializeField] private float slideHeight, slideDuration = 0.5f, slideSpeed = 10f;
+    [SerializeField] private float slideHeight, slideDuration, slideSpeed;
     private float originalHeight;
 
     void Start() {
