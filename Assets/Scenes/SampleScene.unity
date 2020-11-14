@@ -196,7 +196,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1754447852}
   speed: 12
   groundDistance: 0.4
-  jumpHeight: 3
+  jumpHeight: 1.5
   slideHeight: 0.5
   slideDuration: 0.2
   slideSpeed: 0.25
