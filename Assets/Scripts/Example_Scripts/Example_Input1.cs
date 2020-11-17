@@ -6,18 +6,19 @@ using UnityEngine.InputSystem;
 public class Player_Input : MonoBehaviour
 {
 
-    PlayerMovement player;
+    InputMaster player;
     [SerializeField] private float speed;
 
     private void Awake() {
-        player = new PlayerMovement();
+        player = new InputMaster();
     }
 
     public void Update() {
         Vector2 movement = player.Player.Move.ReadValue<Vector2>();
 
         Vector3 currPosition = transform.position;
-        currPosition.x += movement.x * speed * Time.deltaTime;
+        currPosition.x += movement.x * speed + movement.y * speed * Time.deltaTime;
+        currPosition.z += movement.y * speed * Time.deltaTime;
         transform.position = currPosition;
     }
 
