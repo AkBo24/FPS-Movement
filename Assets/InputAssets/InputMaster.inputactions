@@ -1,0 +1,33 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "bf23c7c1-4b61-456f-9e81-c7d4fb4d7415",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "b505c454-2e41-4e55-badd-df653a7364fa",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55584ed9-beaf-48c5-8da7-ba4e4b5ac5bd",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
