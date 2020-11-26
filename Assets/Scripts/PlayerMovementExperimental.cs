@@ -8,8 +8,8 @@ public class PlayerMovementExperimental : MonoBehaviour
 {
 
     //Experimental Input
-    [SerializeField] private InputMaster movement;
-    [SerializeField] private CharacterController charController;
+    [SerializeField] private InputMaster _input;
+    [SerializeField] private CharacterController _cc;
 
     [SerializeField] private float movementSpeed, velocity = 9.81f;
     private Vector2 moveAxis;
@@ -21,33 +21,26 @@ public class PlayerMovementExperimental : MonoBehaviour
 
         Debug.Log(move);
 
-        charController.Move(move);
+        _cc.Move(move);
 
-        if(movement.Player.Move.ReadValue<Vector2>() == Vector2.zero)
+        if(_input.Player.Move.ReadValue<Vector2>() == Vector2.zero)
             moveAxis = Vector2.zero;
 
     }   
 
-    private void HandleMovement(InputAction.CallbackContext context)
-    {
-        // throw new NotImplementedException();
-
-        // Debug.Log(context.ReadValue<Vector2>());
+    private void HandleMovement(InputAction.CallbackContext context) {
         moveAxis = context.ReadValue<Vector2>();
-        // Debug.Log(moveAxis);
-
-
     }
 
     private void OnEnable() {
-        movement = new InputMaster();
-        movement.Player.Move.performed += HandleMovement;
-        movement.Player.Move.Enable();
+        _input = new InputMaster();
+        _input.Player.Move.performed += HandleMovement;
+        _input.Player.Move.Enable();
     }
 
     private void OnDisable() {
-        movement.Player.Move.performed -= HandleMovement;
-        movement.Player.Move.Disable();
+        _input.Player.Move.performed -= HandleMovement;
+        _input.Player.Move.Disable();
     }
 
 }
