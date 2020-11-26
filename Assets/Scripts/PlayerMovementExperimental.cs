@@ -14,23 +14,18 @@ public class PlayerMovementExperimental : MonoBehaviour
     [SerializeField] private float movementSpeed, velocity = 9.81f;
     private Vector2 moveAxis;
 
-    private void OnEnable() {
-        movement = new InputMaster();
-        movement.Player.Move.performed += HandleMovement;
-        movement.Player.Move.Enable();
-    }
-
     void Update() {
 
         // Vector3 move = transform.right*x + transform.forward*z;
-        Vector3 move = new Vector3(moveAxis.x * movementSpeed * Time.deltaTime,
-                                   0,
-                                   moveAxis.y * movementSpeed * Time.deltaTime );
+        Vector3 move = new Vector3(moveAxis.x, 0, moveAxis.y)  * movementSpeed * Time.deltaTime;
+
+        Debug.Log(move);
 
         charController.Move(move);
-        Debug.Log(move);
-        move = Vector3.zero;
-        
+
+        if(movement.Player.Move.ReadValue<Vector2>() == Vector2.zero)
+            moveAxis = Vector2.zero;
+
     }   
 
     private void HandleMovement(InputAction.CallbackContext context)
@@ -42,6 +37,12 @@ public class PlayerMovementExperimental : MonoBehaviour
         // Debug.Log(moveAxis);
 
 
+    }
+
+    private void OnEnable() {
+        movement = new InputMaster();
+        movement.Player.Move.performed += HandleMovement;
+        movement.Player.Move.Enable();
     }
 
     private void OnDisable() {
