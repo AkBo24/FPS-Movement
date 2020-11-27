@@ -21,9 +21,10 @@ public class PlayerMovementExperimental : MonoBehaviour
     void Update() {
 
         // Moving the character through a character controller
+        // Creating a new Vector3 as such will create a movement vector relative to the direciton the gameObject is currently facing
         // Time.deltaTime: ensures calculations are independent of frame rate (movement is consistent across diff frame rates)
-        Vector3 move = new Vector3(moveAxis.x, 0, moveAxis.y)  * movementSpeed * Time.deltaTime;
-        _cc.Move(move);
+        Vector3 move = transform.right * moveAxis.x + transform.forward * moveAxis.y;
+        _cc.Move(move * movementSpeed * Time.deltaTime);
 
     }   
 
