@@ -28,7 +28,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""af5a1e88-8626-4598-bcfe-332ccdd11dca"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -96,7 +96,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""id"": ""d6abd8e2-a6f6-4f9f-8b8a-f74fa432fbd1"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertX=false)"",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Look"",
                     ""isComposite"": false,

@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eea0c5da70ec4070ba5685f53a1204c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cc: {fileID: 0}
+  _cc: {fileID: 80289565}
   movementSpeed: 10
   velocity: 9.81
 --- !u!4 &105044328 stripped
