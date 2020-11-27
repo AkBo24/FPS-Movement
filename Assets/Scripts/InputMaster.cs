@@ -20,7 +20,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""ad370a22-41f3-46a8-8bd9-c5f5305faeab"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",

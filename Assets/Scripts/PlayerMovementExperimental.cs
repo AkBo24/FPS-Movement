@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerMovementExperimental : MonoBehaviour
 {
 
+    /*
+        Notes: Make sure the input for movement is set to Pass through
+    */
+
     //Experimental Input
     [SerializeField] private InputMaster _input;
     [SerializeField] private CharacterController _cc;
@@ -16,15 +20,10 @@ public class PlayerMovementExperimental : MonoBehaviour
 
     void Update() {
 
-        // Vector3 move = transform.right*x + transform.forward*z;
+        // Moving the character through a character controller
+        // Time.deltaTime: ensures calculations are independent of frame rate (movement is consistent across diff frame rates)
         Vector3 move = new Vector3(moveAxis.x, 0, moveAxis.y)  * movementSpeed * Time.deltaTime;
-
-        Debug.Log(move);
-
         _cc.Move(move);
-
-        if(_input.Player.Move.ReadValue<Vector2>() == Vector2.zero)
-            moveAxis = Vector2.zero;
 
     }   
 
