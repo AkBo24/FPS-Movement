@@ -30,8 +30,6 @@ public class PlayerCamera : MonoBehaviour
 
         /* Rotation for looking left and right */
         _cameraTransform.Rotate(Vector3.up * mouseX);
-        // Debug.Log(Vector3.up * mouseX);
-        // Debug.Log(mouseX);
 
     }
 

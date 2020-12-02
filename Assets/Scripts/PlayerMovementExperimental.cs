@@ -14,9 +14,14 @@ public class PlayerMovementExperimental : MonoBehaviour
     //Experimental Input
     [SerializeField] private InputMaster _input;
     [SerializeField] private CharacterController _cc;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float movementSpeed, gravity_accel = -9.81f;
+    [SerializeField] private float groundDist = 1f;
 
-    [SerializeField] private float movementSpeed, velocity = 9.81f;
+    private Vector3 velocity;
     private Vector2 moveAxis;
+    private bool isGrounded;
 
     void Update() {
 
@@ -27,6 +32,19 @@ public class PlayerMovementExperimental : MonoBehaviour
         _cc.Move(move * movementSpeed * Time.deltaTime);
 
     }   
+
+    private void FixedUpdate() {
+        isGrounded = (Physics.CheckSphere(groundCheck.position, groundDist, groundMask));
+
+        //when player is on ground apply constant velocity of -2f
+        if(isGrounded & velocity.y < 0f) {
+            velocity.y = -2f;
+        }
+
+        // v = v_0 + a*T -> kinematics formula
+        velocity.y += gravity_accel * Time.deltaTime;
+
+    }
 
     private void HandleMovement(InputAction.CallbackContext context) {
         moveAxis = context.ReadValue<Vector2>();
