@@ -31,20 +31,18 @@ public class PlayerMovementExperimental : MonoBehaviour
         Vector3 move = transform.right * moveAxis.x + transform.forward * moveAxis.y;
         _cc.Move(move * movementSpeed * Time.deltaTime);
 
-    }   
-
-    private void FixedUpdate() {
         isGrounded = (Physics.CheckSphere(groundCheck.position, groundDist, groundMask));
 
         //when player is on ground apply constant velocity of -2f
-        if(isGrounded & velocity.y < 0f) {
+        if(isGrounded && velocity.y < 0f)
             velocity.y = -2f;
-        }
 
         // v = v_0 + a*T -> kinematics formula
-        velocity.y += gravity_accel * Time.deltaTime;
+        velocity.y -= gravity_accel * Time.deltaTime;
+        Debug.Log(velocity.y);
+        _cc.Move(velocity * Time.deltaTime);
 
-    }
+    }   
 
     private void HandleMovement(InputAction.CallbackContext context) {
         moveAxis = context.ReadValue<Vector2>();
