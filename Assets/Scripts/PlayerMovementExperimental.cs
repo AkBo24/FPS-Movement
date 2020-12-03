@@ -21,9 +21,11 @@ public class PlayerMovementExperimental : MonoBehaviour
 
     private Vector3 velocity;
     private Vector2 moveAxis;
-    private bool isGrounded;
+    private bool isGrounded, jumping;
 
     void Update() {
+
+        /* Character Movement */
 
         // Moving the character through a character controller
         // Creating a new Vector3 as such will create a movement vector relative to the direciton the gameObject is currently facing
@@ -39,24 +41,37 @@ public class PlayerMovementExperimental : MonoBehaviour
 
         // v = v_0 + a*T -> kinematics formula
         velocity.y -= gravity_accel * Time.deltaTime;
-        Debug.Log(velocity.y);
         _cc.Move(velocity * Time.deltaTime);
 
-    }   
 
-    private void HandleMovement(InputAction.CallbackContext context) {
-        moveAxis = context.ReadValue<Vector2>();
-    }
+        /* Character Jumping */
+
+
+    }   
 
     private void OnEnable() {
         _input = new InputMaster();
         _input.Player.Move.performed += HandleMovement;
         _input.Player.Move.Enable();
+
+        _input.Player.Jump.performed += HandleMobility;
+        _input.Player.Jump.Enable();
+    }
+
+    private void HandleMovement(InputAction.CallbackContext context) {
+        moveAxis = context.ReadValue<Vector2>();
+    }
+
+    private void HandleMobility(InputAction.CallbackContext context) {
+        Debug.Log(_input.Player.Jump.triggered);
     }
 
     private void OnDisable() {
         _input.Player.Move.performed -= HandleMovement;
         _input.Player.Move.Disable();
+
+        _input.Player.Jump.performed -= HandleMobility;
+        _input.Player.Jump.Disable();
     }
 
 }
