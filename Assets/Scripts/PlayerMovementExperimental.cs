@@ -16,7 +16,7 @@ public class PlayerMovementExperimental : MonoBehaviour
     [SerializeField] private CharacterController _cc;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float movementSpeed, gravity_accel = -9.81f;
+    [SerializeField] private float movementSpeed, gravity_accel;
     [SerializeField] private float groundDist = 1f;
 
     private Vector3 velocity;

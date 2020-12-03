@@ -189,8 +189,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cc: {fileID: 80289565}
+  groundCheck: {fileID: 1754447852}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
   movementSpeed: 10
-  velocity: 9.81
+  gravity_accel: 9.81
+  groundDist: 1
 --- !u!4 &105044328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2321fa9654cb343e0bc052b765b572af, type: 3}
