@@ -36,7 +36,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""11d53d90-ef71-46cc-8871-6e91d744758e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

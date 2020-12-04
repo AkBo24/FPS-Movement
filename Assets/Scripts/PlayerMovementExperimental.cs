@@ -17,7 +17,7 @@ public class PlayerMovementExperimental : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float movementSpeed, gravity_accel;
-    [SerializeField] private float groundDist = 1f;
+    [SerializeField] private float groundDist = 1f, jumpHeight = 3f;
 
     private Vector3 velocity;
     private Vector2 moveAxis;
@@ -39,14 +39,21 @@ public class PlayerMovementExperimental : MonoBehaviour
         if(isGrounded && velocity.y < 0f)
             velocity.y = -2f;
 
+        if(isGrounded && jumping) 
+            velocity.y = Mathf.Sqrt(jumpHeight * 2f * gravity_accel);
+            // Debug.Log((jumpHeight * 2f * gravity_accel));
+
+        /* Moving the character down for gravity*/
         // v = v_0 + a*T -> kinematics formula
         velocity.y -= gravity_accel * Time.deltaTime;
         _cc.Move(velocity * Time.deltaTime);
 
 
         /* Character Jumping */
+        // Debug.Log(jumping);
 
 
+        jumping = false;
     }   
 
     private void OnEnable() {
@@ -63,7 +70,9 @@ public class PlayerMovementExperimental : MonoBehaviour
     }
 
     private void HandleMobility(InputAction.CallbackContext context) {
-        Debug.Log(_input.Player.Jump.triggered);
+        jumping = _input.Player.Jump.triggered;
+
+        // Debug.Log(_input.Player.Jump.triggered);
     }
 
     private void OnDisable() {

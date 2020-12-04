@@ -194,7 +194,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   movementSpeed: 10
-  gravity_accel: 9.81
+  gravity_accel: 50
   groundDist: 1
 --- !u!4 &105044328 stripped
 Transform:
