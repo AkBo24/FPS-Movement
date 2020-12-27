@@ -155,7 +155,7 @@ CharacterController:
   m_Height: 3.8
   m_Radius: 0.6
   m_SlopeLimit: 45
-  m_StepOffset: 2
+  m_StepOffset: 3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -196,7 +196,6 @@ MonoBehaviour:
   movementSpeed: 10
   gravity_accel: 50
   groundDist: 1
-  jumpHeight: 3
 --- !u!4 &105044328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2321fa9654cb343e0bc052b765b572af, type: 3}
